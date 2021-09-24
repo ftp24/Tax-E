@@ -3,9 +3,10 @@ import React from 'react'
 function Login() {
 	function setLoggedIn() {
 		localStorage.setItem('loggedIn','true')
+		localStorage.setItem('userType','customer')
 		console.log("hi")
 	}
-	// setLoggedIn()
+	setLoggedIn()
     return (
         <div>
 		<p>helloo</p>
