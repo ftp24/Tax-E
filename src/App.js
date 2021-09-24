@@ -1,19 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import Login from './components/Login'
+import { BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom"
+
+const AppWrapper = () => {
+  return (
+    <Router>
+      <App />
+    </Router>
+  )
+}
 
 function App() {
+	let history=useHistory()
+	function checkLoggedIn() {
+		if(!localStorage.getItem('loggedIn'))
+		{
+			console.log("hello")
+			history.push('/login')
+		}
+	}
+	checkLoggedIn()
+
 	return (
-		<div className="container">
-			<div className="row ml-5">
-					<div className="col-sm-6">
-						<p>testing</p>
-					</div>
-					<div className="col-sm-6">
-						<p>boostrap</p>
-					</div>
-			</div>
-		</div>
+		<div>
+		<Router>
+			<Switch>
+				<Route path="/login">
+	      		<Login></Login>
+				</Route>
+			</Switch>
+		</Router>
+	  	</div>
 	);
 }
 
-export default App;
+export default AppWrapper;
