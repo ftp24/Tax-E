@@ -1,0 +1,25 @@
+{
+  "translations": [
+    {
+      "id": 1,
+      "key": "NEW",
+      "language": "en_GB",
+      "value": "NEW",
+      "context": "myapp"
+    },
+    {
+      "id": 2,
+      "key": "STORE",
+      "language": "en_GB",
+      "value": "STORE",
+      "context": "myapp"
+    },
+    {
+      "id": 3,
+      "key": "STORES",
+      "language": "pl_PL",
+      "value": "STORES",
+      "context": "myapp"
+    }
+  ]
+}
