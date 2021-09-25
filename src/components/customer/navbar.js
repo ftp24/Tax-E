@@ -1,13 +1,12 @@
 import {Link, useHistory} from 'react-router-dom';
-
 const CustomerNavbar = ({currentPage}) => {
 
-    let history=useHistory()
+			let history=useHistory()
+	function SignOut() {
 
-    function SignOut() {
-        localStorage.removeItem('user');
-        history.push('/login');
-    }
+			localStorage.removeItem('user');
+			history.push('/login');
+	}
 
     console.log(currentPage);
 
@@ -23,6 +22,7 @@ const CustomerNavbar = ({currentPage}) => {
                         <li class={`nav-item ${currentPage === 'customer-home' ? 'active' : ''}`}><Link className="nav-link" to="/customer-home">Home</Link></li>
                         <li class={`nav-item ${currentPage === 'customer-history' ? 'active' : ''}`}><Link className="nav-link" to="/customer-history">History</Link></li>
 						<li class={`nav-item ${currentPage === 'customer-book' ? 'active' : ''}`}><Link className="nav-link" to="/customer-book">Book Ride</Link></li>
+						<li class={`nav-item ${currentPage === 'customer-scheduled' ? 'active' : ''}`}><Link className="nav-link" to="/customer-scheduled">Scheduled Trips</Link></li>
 
 					</ul>
                     <button class="btn btn-outline-info my-2 my-sm-0" type="submit" onClick={SignOut}>Sign Out</button>
