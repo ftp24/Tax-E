@@ -1,8 +1,15 @@
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
-const CustomerNavbar = () => {
+const CustomerNavbar = ({currentPage}) => {
 
-    
+    let history=useHistory()
+
+    function SignOut() {
+        localStorage.removeItem('user');
+        history.push('/login');
+    }
+
+    console.log(currentPage);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark my-3 mx-5 rounded">
@@ -11,10 +18,15 @@ const CustomerNavbar = () => {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><Link className="nav-link" to="/home-customer">Home</Link></li>
-                    <li class="nav-item"><Link className="nav-link" to="/history">History</Link></li>
-                </ul>
+                <div className="container">
+                    <ul class="navbar-nav">
+                        <li class={`nav-item ${currentPage === 'customer-home' ? 'active' : ''}`}><Link className="nav-link" to="/customer-home">Home</Link></li>
+                        <li class={`nav-item ${currentPage === 'customer-history' ? 'active' : ''}`}><Link className="nav-link" to="/customer-history">History</Link></li>
+						<li class={`nav-item ${currentPage === 'customer-book' ? 'active' : ''}`}><Link className="nav-link" to="/customer-book">Book Ride</Link></li>
+
+					</ul>
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit" onClick={SignOut}>Sign Out</button>
+                </div>
             </div>
         </nav>
     )
