@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Switch, useHistory, useLocation} from "
 import Login from './components/authentication/Login'
 import LoggedInWrapper from './components/authentication/LoggedInWrapper';
 import SignUp from './components/authentication/signUp';
+import CustomerDetails from './components/authentication/customerDetails';
+import DriverDetails from './components/authentication/driverDetails';
+
 
 const AppWrapper = () => {
   return (
@@ -20,6 +23,7 @@ function App() {
 	let accessFlag = false;
 	
 	const baseRoutes = ['/login','/sign-up']
+
 
 	function checkLoggedIn() {
 
@@ -50,13 +54,19 @@ function App() {
 			<Router>
 				<Switch>
 					<Route path="/login">
-					<Login />
+						<Login />
 					</Route>
 					<Route path="/sign-up">
-					<SignUp />
+						<SignUp />
+					</Route>
+					<Route path="/customer-details">
+						<CustomerDetails/>
+					</Route>
+					<Route path="/driver-details">
+						<DriverDetails/>
 					</Route>
 					<Route path="/">
-					<LoggedInWrapper userType={userType} />
+						<LoggedInWrapper userType={userType} />
 					</Route>
 				</Switch>
 			</Router>
