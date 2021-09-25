@@ -15,7 +15,7 @@ function Login() {
 						<div className="card">
 							<div className="card-body">
 								<h5 class="card-title">Login</h5>
-								
+
 									<form>
 										<div className="form-group">
 											<label for="inputPhoneNo">Phone Number</label>
@@ -25,13 +25,13 @@ function Login() {
 											<label for="InputPassword1">Password</label>
 											<input type="password" className="form-control" id="InputPassword1" placeholder="Password"/>
 										</div>
-										<button type="submit" className="btn btn-primary">Submit</button>
+										<button type="submit" className="btn btn-info">Submit</button>
 									</form>
 							</div>
 						</div>
 					</div>
-				</div>	
-			</div>	
+				</div>
+			</div>
         </div>
     )
 }

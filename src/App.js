@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Switch, useHistory} from "react-router-
 import Login from './components/authentication/Login'
 import LoggedInWrapper from './components/authentication/LoggedInWrapper';
 import SignUp from './components/authentication/signUp';
+import CustomerDetails from './components/authentication/customerDetails';
+import DriverDetails from './components/authentication/driverDetails';
+
 
 const AppWrapper = () => {
   return (
@@ -16,6 +19,7 @@ const AppWrapper = () => {
 function App() {
 	let history=useHistory()
 	let userType;
+
 
 	function checkLoggedIn() {
 		if(!localStorage.getItem('loggedIn') || !localStorage.getItem('userType'))
@@ -33,13 +37,19 @@ function App() {
 			<Router>
 				<Switch>
 					<Route path="/login">
-					<Login />
+						<Login />
 					</Route>
 					<Route path="/sign-up">
-					<SignUp />
+						<SignUp />
+					</Route>
+					<Route path="/customer-details">
+						<CustomerDetails/>
+					</Route>
+					<Route path="/driver-details">
+						<DriverDetails/>
 					</Route>
 					<Route path="/">
-					<LoggedInWrapper userType={userType} />
+						<LoggedInWrapper userType={userType} />
 					</Route>
 				</Switch>
 			</Router>

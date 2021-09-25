@@ -6,6 +6,7 @@ function SignUp() {
 		localStorage.setItem('userType','customer')
 		console.log("hi")
 	}
+
 	//setLoggedIn()
     return (
         <div>
@@ -15,7 +16,7 @@ function SignUp() {
 						<div className="card">
 							<div className="card-body">
 								<h5 class="card-title">Sign Up</h5>
-								
+
 									<form>
 										<div className="form-group">
 											<label for="inputPhoneNo">Phone Number</label>
@@ -25,13 +26,13 @@ function SignUp() {
 											<label for="InputPassword1">Password</label>
 											<input type="password" className="form-control" id="InputPassword1" placeholder="Password"/>
 										</div>
-										<button type="submit" className="btn btn-primary">Submit</button>
+										<button type="submit" className="btn btn-info">Submit</button>
 									</form>
 							</div>
 						</div>
 					</div>
-				</div>	
-			</div>	
+				</div>
+			</div>
         </div>
     )
 }
