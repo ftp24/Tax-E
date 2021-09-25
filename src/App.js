@@ -1,7 +1,9 @@
 import './App.css';
-import Login from './components/authentication/Login'
 import { BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
+
+import Login from './components/authentication/Login'
 import LoggedInWrapper from './components/authentication/LoggedInWrapper';
+import SignUp from './components/authentication/signUp';
 
 const AppWrapper = () => {
   return (
@@ -23,7 +25,7 @@ function App() {
 		}
 		userType = localStorage.getItem('userType');
 	}
-	checkLoggedIn()
+	//checkLoggedIn()
 
 
 		return (
@@ -32,6 +34,9 @@ function App() {
 				<Switch>
 					<Route path="/login">
 					<Login />
+					</Route>
+					<Route path="/sign-up">
+					<SignUp />
 					</Route>
 					<Route path="/">
 					<LoggedInWrapper userType={userType} />
