@@ -9,9 +9,7 @@ import DriverDetailsForm from './components/authentication/driverDetailsForm';
 import Book from './components/customer/book';
 import CustomerNavbar from './components/customer/navbar';
 import DriverNavbar from './components/driver/navbar';
-import CustomerHome from './components/customer/home';
 import CustomerHistory from './components/customer/history';
-import DriverHome from './components/driver/home';
 import Error404 from'./components/general/Error404';
 import CustomerScheduled from './components/customer/scheduled';
 import DriverHistory from './components/driver/history';
@@ -52,7 +50,18 @@ function App() {
 	baseRoutes.includes(pathname) ? history.push(pathname) : history.push('/login');
 	else{
 		user = JSON.parse(user);
-		(baseRoutes.includes(pathname) || pathname === '/') ? history.push(`/${user.type}-home`) : history.push(pathname);
+		if(baseRoutes.includes(pathname) || pathname === '/')
+		{
+			if((user.type)=='customer')
+			{
+				history.push('/customer-book')
+			}
+			else if((user.type)=='driver')
+			{
+				history.push('driver-available')
+			}
+		}
+		// (baseRoutes.includes(pathname) || pathname === '/') ? history.push(`/${user.type}-`) : history.push(pathname);
 	}
 
 
@@ -69,13 +78,11 @@ function App() {
 
 
 					{/* Customer Routes */}
-						<Route exact path="/customer-home"><CustomerHome /></Route>
 						<Route exact path="/customer-history"><CustomerHistory/></Route>
 						<Route exact path='/customer-book'><Book/></Route>
 						<Route exact path='/customer-scheduled'><CustomerScheduled/></Route>
 
 					{/* Drover Routes */}
-						<Route exact path="/driver-home"><DriverHome /></Route>
 						<Route exact path="/driver-history"><DriverHistory/></Route>
 						<Route exact path="/driver-scheduled"><DriverScheduled/></Route>
 						<Route exact path='/driver-available'><DriverAvailable/></Route>
