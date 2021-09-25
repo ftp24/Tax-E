@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory, useLocation} from "react-router-dom";
 
 import Login from './components/authentication/Login'
 import LoggedInWrapper from './components/authentication/LoggedInWrapper';
@@ -19,17 +19,34 @@ const AppWrapper = () => {
 function App() {
 	let history=useHistory()
 	let userType;
+	const pathname = window.location.pathname;
+	let accessFlag = false;
+	
+	const baseRoutes = ['/login','/sign-up']
 
 
 	function checkLoggedIn() {
-		if(!localStorage.getItem('loggedIn') || !localStorage.getItem('userType'))
+
+		baseRoutes.forEach(element => {
+			console.log(element);
+			if(pathname === element){
+				accessFlag=true;
+			}
+		});
+
+		
+
+		if(!accessFlag && (!localStorage.getItem('loggedIn') || !localStorage.getItem('userType')))
 		{
-			console.log("Not logged in")
-			history.push('/login')
+			console.log("Not logged in");
+			history.push('/login');
+		}else if(localStorage.getItem('loggedIn') && localStorage.getItem('userType') && accessFlag){
+			console.log("logged in");
+			history.push('/');
 		}
 		userType = localStorage.getItem('userType');
 	}
-	//checkLoggedIn()
+	checkLoggedIn()
 
 
 		return (
