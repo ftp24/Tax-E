@@ -32,7 +32,7 @@ function DriverDetailsForm() {
 		console.log(user);
 		addToCache(user);
 
-		history.push('/');
+		history.push('/driver-home');
 	}
 	
     return (

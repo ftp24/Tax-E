@@ -28,6 +28,8 @@ function App() {
 	// const [pwd,setPwd]= useState('')
 	// const [signUpType,setSignUpType]= useState('')
 
+
+
 	
 
 	let history=useHistory();
@@ -41,7 +43,8 @@ function App() {
 	if(!user) //if user is not present
 	baseRoutes.includes(pathname) ? history.push(pathname) : history.push('/login');
 	else{
-		baseRoutes.includes(pathname) ? history.push(`/${user.type}-home`) : history.push(pathname);
+		user = JSON.parse(user);
+		(baseRoutes.includes(pathname) || pathname === '/') ? history.push(`/${user.type}-home`) : history.push(pathname);
 	}
 	
 
@@ -67,21 +70,20 @@ function App() {
 					
 					{/* Customer Routes */}
 					<div className="customer">
-						<CustomerNavbar/>
 						<Switch>
-							<Route exact path="/home-customer"><CustomerHome /></Route>
-							<Route exact path="/history"><CustomerHistory/></Route>
-							<Route path="*"><Error404/></Route>
+							<Route exact path="/customer-home"><CustomerHome /></Route>
+							<Route exact path="/customer-history"><CustomerHistory/></Route>
 						</Switch>
 					</div>
 					{/* Drover Routes */}
 					<div className="driver">
-						<DriverNavbar/>
+						
 						<Switch>
-							<Route exact path="/home-driver"><DriverHome /></Route>
-							<Route path="*"><Error404/></Route>
+							<Route exact path="/driver-home"><DriverHome /></Route>
 						</Switch>
 					</div>
+
+					<Route path="*"><Error404/></Route>
 
 				</Switch>
 			</Router>

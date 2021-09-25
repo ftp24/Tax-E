@@ -26,7 +26,7 @@ function CustomerDetailsForm({phoneNo,pwd,signUpType}) {
 		console.log(user);
 		addToCache(user);
 
-		history.push('/');
+		history.push('/customer-home');
 	}
 
     return (
