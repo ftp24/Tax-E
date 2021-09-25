@@ -1,5 +1,4 @@
-import React from 'react'
-import loginUser from './functions/login'
+import React from 'react';
 
 function LoginPage() {
 
@@ -26,7 +25,7 @@ function LoginPage() {
 										<div className="mb-3">
 										<a href="/sign-up" className="text-info">Don't have an account yet?</a>
 										</div>
-											<button type="submit" className="btn btn-info" onClick={loginUser}>Log in</button>
+											<button type="submit" className="btn btn-info">Log in</button>
 									</form>
 							</div>
 						</div>
