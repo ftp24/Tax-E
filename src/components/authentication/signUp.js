@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Login() {
+function SignUp() {
 	function setLoggedIn() {
 		localStorage.setItem('loggedIn','true')
 		localStorage.setItem('userType','customer')
@@ -10,11 +10,11 @@ function Login() {
     return (
         <div>
 			<div className="container">
-				<div className="row justify-content-md-center">
-					<div className="col-8 mt-5">
+				<div className="row align-items-center justify-content-md-center">
+					<div className="col-8">
 						<div className="card">
 							<div className="card-body">
-								<h5 class="card-title">Login</h5>
+								<h5 class="card-title">Sign Up</h5>
 								
 									<form>
 										<div className="form-group">
@@ -36,4 +36,4 @@ function Login() {
     )
 }
 
-export default Login
+export default SignUp
