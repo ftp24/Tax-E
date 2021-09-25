@@ -1,12 +1,13 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, useHistory, useLocation} from "react-router-dom";
+import {useState} from 'react'
 
 import Login from './components/authentication/Login'
 import LoggedInWrapper from './components/authentication/LoggedInWrapper';
 import SignUp from './components/authentication/signUp';
 import CustomerDetails from './components/authentication/customerDetails';
 import DriverDetails from './components/authentication/driverDetails';
-
+import Book from './components/customer/book';
 
 const AppWrapper = () => {
   return (
@@ -16,12 +17,17 @@ const AppWrapper = () => {
   )
 }
 
+
 function App() {
+	const [phoneNo,setPhoneNo]= useState('')
+	const [pwd,setPwd]= useState('')
+	const [signUpType,setSignUpType]= useState('')
+
 	let history=useHistory()
 	let userType;
 	const pathname = window.location.pathname;
 	let accessFlag = false;
-	
+
 	const baseRoutes = ['/login','/sign-up']
 
 
@@ -34,7 +40,7 @@ function App() {
 			}
 		});
 
-		
+
 
 		if(!accessFlag && (!localStorage.getItem('loggedIn') || !localStorage.getItem('userType')))
 		{
@@ -46,7 +52,7 @@ function App() {
 		}
 		userType = localStorage.getItem('userType');
 	}
-	checkLoggedIn()
+	// checkLoggedIn()
 
 
 		return (
@@ -56,15 +62,26 @@ function App() {
 					<Route path="/login">
 						<Login />
 					</Route>
-					<Route path="/sign-up">
-						<SignUp />
-					</Route>
-					<Route path="/customer-details">
-						<CustomerDetails/>
-					</Route>
-					<Route path="/driver-details">
-						<DriverDetails/>
-					</Route>
+					<Route path='/sign-up' render ={(props)=>(
+						<>
+						<SignUp  phoneNo={phoneNo} setPhoneNo={setPhoneNo}  pwd={pwd} setPwd={setPwd} signUpType = {signUpType} setSignUpType={setSignUpType}></SignUp>
+						</>
+					)}/>
+					<Route path='/customer-details' render ={(props)=>(
+						<>
+						<CustomerDetails phoneNo={phoneNo} pwd={pwd} signUpType = {signUpType}></CustomerDetails>
+						</>
+					)}/>
+				<Route path='/book' render ={(props)=>(
+							<>
+							<Book></Book>
+							</>
+						)}/>
+					<Route path='/driver-details' render ={(props)=>(
+						<>
+						<DriverDetails phoneNo={phoneNo} pwd={pwd} signUpType = {signUpType}></DriverDetails>
+						</>
+					)}/>
 					<Route path="/">
 						<LoggedInWrapper userType={userType} />
 					</Route>

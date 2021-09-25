@@ -1,8 +1,16 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 
 
+function DriverDetails({phoneNo,pwd,signUpType}) {
 
-function DriverDetails() {
+	console.log("driver page",phoneNo,pwd,signUpType)
+	let history=useHistory()
+	function setLoggedIn(e) {
+		localStorage.setItem('loggedIn','true')
+		localStorage.setItem('userType','customer')
+		history.push('/')
+	}
     return (
         <div>
 			<div className="container">
@@ -26,8 +34,8 @@ function DriverDetails() {
 												<input type="text" className="form-control mb-1" id="inputLicenseNo" placeholder="Enter Full Name"/>
 												<label for="inputVehicleNo">Vehicle Number</label>
 												<input type="text" className="form-control mb-2" id="inputVehicleNo" placeholder="Enter Full Name"/>
-												<label for="inputVehicleType">Vehicle Type</label>
 
+											<label for="inputVehicleType">Vehicle Type</label>
 												<select className="form-select" id="vehicleType" name="vehicleType">
 													<option value="auto">Auto</option>
 													<option value="sedan">Sedan</option>
@@ -36,7 +44,7 @@ function DriverDetails() {
 
 											</div>
 											<div className="col-4">
-												<button type="submit" className="btn btn-info mt-2">Submit</button>
+												<button type="submit" className="btn btn-info mt-2" onClick={setLoggedIn}>Submit</button>
 											</div>
 										</div>
 									</form>
