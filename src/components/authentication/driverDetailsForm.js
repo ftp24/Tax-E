@@ -1,16 +1,13 @@
-import React from 'react'
-import {useHistory} from 'react-router-dom'
+import React from 'react';
+import {useHistory} from 'react-router-dom';
+import signupUser from './functions/signup';
 
 
-function DriverDetails({phoneNo,pwd,signUpType}) {
+function DriverDetailsForm({phoneNo,pwd,signUpType}) {
 
 	console.log("driver page",phoneNo,pwd,signUpType)
 	let history=useHistory()
-	function setLoggedIn(e) {
-		localStorage.setItem('loggedIn','true')
-		localStorage.setItem('userType','customer')
-		history.push('/')
-	}
+	
     return (
         <div>
 			<div className="container">
@@ -44,7 +41,7 @@ function DriverDetails({phoneNo,pwd,signUpType}) {
 
 											</div>
 											<div className="col-4">
-												<button type="submit" className="btn btn-info mt-2" onClick={setLoggedIn}>Submit</button>
+												<button type="submit" className="btn btn-info mt-2" onClick={signupUser}>Sign Up</button>
 											</div>
 										</div>
 									</form>
@@ -57,4 +54,4 @@ function DriverDetails({phoneNo,pwd,signUpType}) {
     )
 }
 
-export default DriverDetails
+export default DriverDetailsForm

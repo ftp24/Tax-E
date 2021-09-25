@@ -1,12 +1,10 @@
 import React from 'react'
+import loginUser from './functions/login'
 
-function Login() {
+function LoginPage() {
 
-	function setLoggedIn(e) {
-		localStorage.setItem('loggedIn','true')
-		localStorage.setItem('userType','customer')
-	}
-	//setLoggedIn()
+	
+	
     return (
         <div>
 			<div className="container">
@@ -28,7 +26,7 @@ function Login() {
 										<div className="mb-3">
 										<a href="/sign-up" className="text-info">Don't have an account yet?</a>
 										</div>
-											<button type="submit" className="btn btn-info" onClick={setLoggedIn}>Submit</button>
+											<button type="submit" className="btn btn-info" onClick={loginUser}>Log in</button>
 									</form>
 							</div>
 						</div>
@@ -39,4 +37,4 @@ function Login() {
     )
 }
 
-export default Login
+export default LoginPage

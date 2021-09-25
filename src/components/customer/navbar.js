@@ -5,10 +5,7 @@ const CustomerNavbar = () => {
     let history=useHistory()
 
     function SignOut() {
-        localStorage.removeItem('loggedIn');
-        localStorage.removeItem('userType');
-        console.log('Here we go')
-        console.log(localStorage.getItem('loggedIn'))
+        localStorage.removeItem('user');
         history.push('/');
     }
 

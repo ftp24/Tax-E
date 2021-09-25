@@ -1,13 +1,17 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, useHistory, useLocation} from "react-router-dom";
-import {useState} from 'react'
+import { BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
+import {useState, useEffect} from 'react'
 
-import Login from './components/authentication/Login'
-import LoggedInWrapper from './components/authentication/LoggedInWrapper';
-import SignUp from './components/authentication/signUp';
-import CustomerDetails from './components/authentication/customerDetails';
-import DriverDetails from './components/authentication/driverDetails';
+import LoginPage from './components/authentication/LoginPage';
+import SignUpPage from './components/authentication/signUpPage';
+import CustomerDetailsForm from './components/authentication/customerDetailsForm';
+import DriverDetailsForm from './components/authentication/driverDetailsForm';
 import Book from './components/customer/book';
+import CustomerNavbar from './components/customer/navbar';
+import DriverNavbar from './components/driver/navbar';
+import CustomerHome from './components/customer/home';
+import CustomerHistory from './components/customer/history';
+import DriverHome from './components/driver/home';
 
 const AppWrapper = () => {
   return (
@@ -23,68 +27,71 @@ function App() {
 	const [pwd,setPwd]= useState('')
 	const [signUpType,setSignUpType]= useState('')
 
+	const [user, setUser] = useState({});
+
 	let history=useHistory()
-	let userType;
+
 	const pathname = window.location.pathname;
-	let accessFlag = false;
+	const baseRoutes = ['/login','/sign-up','/sign-up/customer-details','/sign-up/driver-details'] //All the pages that can be accessed without logging in
+	
 
-	const baseRoutes = ['/login','/sign-up']
-
-
-	function checkLoggedIn() {
-
-		baseRoutes.forEach(element => {
-			console.log(element);
-			if(pathname === element){
-				accessFlag=true;
-			}
-		});
-
-
-
-		if(!accessFlag && (!localStorage.getItem('loggedIn') || !localStorage.getItem('userType')))
-		{
-			console.log("Not logged in");
-			history.push('/login');
-		}else if(localStorage.getItem('loggedIn') && localStorage.getItem('userType') && accessFlag){
-			console.log("logged in");
-			history.push('/');
+	useEffect(() => {
+		setUser(localStorage.getItem('user'));
+		if(!user) //if user is not present
+		baseRoutes.includes(pathname) ? history.push(pathname) : history.push('/login');
+		else{
+			baseRoutes.includes(pathname) ? history.push(`/${user.userType}-home`) : history.push(pathname);
 		}
-		userType = localStorage.getItem('userType');
-	}
-	// checkLoggedIn()
+	},[user]);
+
+	
+	
+	
 
 
 		return (
 			<div>
 			<Router>
 				<Switch>
-					<Route path="/login">
-						<Login />
-					</Route>
-					<Route path='/sign-up' render ={(props)=>(
+					<Route exact path="/login"><LoginPage /></Route>
+					<Route exact path='/sign-up' render ={(props)=>(
 						<>
-						<SignUp  phoneNo={phoneNo} setPhoneNo={setPhoneNo}  pwd={pwd} setPwd={setPwd} signUpType = {signUpType} setSignUpType={setSignUpType}></SignUp>
+						<SignUpPage  phoneNo={phoneNo} setPhoneNo={setPhoneNo}  pwd={pwd} setPwd={setPwd} signUpType = {signUpType} setSignUpType={setSignUpType} />
 						</>
 					)}/>
-					<Route path='/customer-details' render ={(props)=>(
-						<>
-						<CustomerDetails phoneNo={phoneNo} pwd={pwd} signUpType = {signUpType}></CustomerDetails>
-						</>
-					)}/>
-				<Route path='/book' render ={(props)=>(
+					<Route exact path='/sign-up/customer-details' render ={(props)=>(
+								<>
+								<CustomerDetailsForm phoneNo={phoneNo} pwd={pwd} signUpType = {signUpType}></CustomerDetailsForm>
+								</>
+							)}/>
+
+					<Route exact path='/sign-up/driver-details' render ={(props)=>(
+								<>
+								<DriverDetailsForm phoneNo={phoneNo} pwd={pwd} signUpType = {signUpType}></DriverDetailsForm>
+								</>
+							)}/>
+					
+					<Route exact path='/book' render ={(props)=>(
 							<>
 							<Book></Book>
 							</>
 						)}/>
-					<Route path='/driver-details' render ={(props)=>(
-						<>
-						<DriverDetails phoneNo={phoneNo} pwd={pwd} signUpType = {signUpType}></DriverDetails>
-						</>
-					)}/>
-					<Route path="/">
-						<LoggedInWrapper userType={userType} />
-					</Route>
+					
+					{/* Customer Routes */}
+					<div className="customer">
+						<CustomerNavbar/>
+						<Switch>
+							<Route exact path="/home-customer"><CustomerHome /></Route>
+							<Route exact path="/history"><CustomerHistory/></Route>
+						</Switch>
+					</div>
+					{/* Drover Routes */}
+					<div className="driver">
+						<DriverNavbar/>
+						<Switch>
+							<Route exact path="/home-driver"><DriverHome /></Route>
+						</Switch>
+					</div>
 				</Switch>
 			</Router>
 			</div>

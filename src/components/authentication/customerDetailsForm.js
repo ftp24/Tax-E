@@ -1,14 +1,12 @@
-import React from 'react'
+import React from 'react';
+import {useHistory} from "react-router-dom";
+import signupUser from './functions/signup';
 
+function CustomerDetailsForm({phoneNo,pwd,signUpType}) {
 
-function CustomerDetails({phoneNo,pwd,signUpType}) {
+	let history=useHistory();
 
-
-	function setLoggedIn(e) {
-		localStorage.setItem('loggedIn','true')
-		localStorage.setItem('userType','customer')
-		history.push('/')
-	}
+	
 
     return (
         <div>
@@ -27,7 +25,7 @@ function CustomerDetails({phoneNo,pwd,signUpType}) {
 											<label for="InputPassword1">Email</label>
 											<input type="Email" className="form-control" id="inputEmail" placeholder="Email"/>
 										</div>
-										<button type="submit" className="btn btn-info" onClick={setLoggedIn}>Submit</button>
+										<button type="submit" className="btn btn-info" onClick={signupUser}>Sign Up</button>
 									</form>
 							</div>
 						</div>
@@ -38,4 +36,4 @@ function CustomerDetails({phoneNo,pwd,signUpType}) {
     )
 }
 
-export default CustomerDetails
+export default CustomerDetailsForm

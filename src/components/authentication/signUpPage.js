@@ -2,7 +2,7 @@ import  React from 'react'
 import {useState,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 
-function SignUp({phoneNo,setPhoneNo,pwd,setPwd,signUpType,setSignUpType}) {
+function SignUpPage({phoneNo,setPhoneNo,pwd,setPwd,signUpType,setSignUpType}) {
 	let history=useHistory()
 
 	useEffect(() => {
@@ -10,7 +10,7 @@ function SignUp({phoneNo,setPhoneNo,pwd,setPwd,signUpType,setSignUpType}) {
 
 	}, [pwd])
 
-	function setLoggedIn(e) {
+	function navigateToNextForm(e) {
 		e.preventDefault()
 		// console.log(phoneNo)
 		let inputPno=""
@@ -25,12 +25,12 @@ function SignUp({phoneNo,setPhoneNo,pwd,setPwd,signUpType,setSignUpType}) {
 		setPwd(inputPwd)
 		setSignUpType(inputType)
 
-		if(inputType=='customer')
+		if(inputType==='customer')
 		{
-			history.push('/customer-details')
+			history.push('/sign-up/customer-details')
 		}
-		else if(inputType=='driver')
-			history.push('/driver-details')
+		else if(inputType==='driver')
+			history.push('/sign-up/driver-details')
 		else
 			console.log("invalid inputType")
 	}
@@ -65,7 +65,10 @@ function SignUp({phoneNo,setPhoneNo,pwd,setPwd,signUpType,setSignUpType}) {
 												</div>
 											</div>
 										</div>
-										<button type="submit" className="btn btn-info" onClick={setLoggedIn}>Submit</button>
+										<div className="mb-3">
+										<a href="/login" className="text-info">Already have an account?</a>
+										</div>
+										<button type="submit" className="btn btn-info" onClick={navigateToNextForm}>Next</button>
 
 									</form>
 							</div>
@@ -77,4 +80,4 @@ function SignUp({phoneNo,setPhoneNo,pwd,setPwd,signUpType,setSignUpType}) {
     )
 }
 
-export default SignUp
+export default SignUpPage
