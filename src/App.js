@@ -30,7 +30,7 @@ function App() {
 
 
 
-	
+
 
 	let history=useHistory();
 	let user = {};
@@ -46,11 +46,11 @@ function App() {
 		user = JSON.parse(user);
 		(baseRoutes.includes(pathname) || pathname === '/') ? history.push(`/${user.type}-home`) : history.push(pathname);
 	}
-	
 
-	
-	
-	
+
+
+
+
 
 
 		return (
@@ -61,23 +61,19 @@ function App() {
 					<Route exact path="/sign-up"><SignUpPage /></Route>
 					<Route exact path='/sign-up/customer-details'><CustomerDetailsForm/></Route>
 					<Route exact path='/sign-up/driver-details'><DriverDetailsForm/></Route>
-					
-					<Route exact path='/book' render ={(props)=>(
-							<>
-							<Book></Book>
-							</>
-						)}/>
-					
+
+
 					{/* Customer Routes */}
 					<div className="customer">
 						<Switch>
 							<Route exact path="/customer-home"><CustomerHome /></Route>
 							<Route exact path="/customer-history"><CustomerHistory/></Route>
+							<Route exact path='/customer-book'><Book/></Route>
 						</Switch>
 					</div>
 					{/* Drover Routes */}
 					<div className="driver">
-						
+
 						<Switch>
 							<Route exact path="/driver-home"><DriverHome /></Route>
 						</Switch>
