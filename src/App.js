@@ -13,6 +13,14 @@ import CustomerHome from './components/customer/home';
 import CustomerHistory from './components/customer/history';
 import DriverHome from './components/driver/home';
 import Error404 from'./components/general/Error404';
+import CustomerScheduled from './components/customer/scheduled';
+import DriverHistory from './components/driver/history';
+import DriverScheduled from './components/driver/scheduled';
+import DriverAvailable from './components/driver/available';
+
+
+
+
 
 const AppWrapper = () => {
   return (
@@ -50,9 +58,6 @@ function App() {
 
 
 
-
-
-
 		return (
 			<div>
 			<Router>
@@ -64,21 +69,16 @@ function App() {
 
 
 					{/* Customer Routes */}
-					<div className="customer">
-						<Switch>
-							<Route exact path="/customer-home"><CustomerHome /></Route>
-							<Route exact path="/customer-history"><CustomerHistory/></Route>
-							<Route exact path='/customer-book'><Book/></Route>
-						</Switch>
-					</div>
+						<Route exact path="/customer-home"><CustomerHome /></Route>
+						<Route exact path="/customer-history"><CustomerHistory/></Route>
+						<Route exact path='/customer-book'><Book/></Route>
+						<Route exact path='/customer-scheduled'><CustomerScheduled/></Route>
+
 					{/* Drover Routes */}
-					<div className="driver">
-
-						<Switch>
-							<Route exact path="/driver-home"><DriverHome /></Route>
-						</Switch>
-					</div>
-
+						<Route exact path="/driver-home"><DriverHome /></Route>
+						<Route exact path="/driver-history"><DriverHistory/></Route>
+						<Route exact path="/driver-scheduled"><DriverScheduled/></Route>
+						<Route exact path='/driver-available'><DriverAvailable/></Route>
 					<Route path="*"><Error404/></Route>
 
 				</Switch>
