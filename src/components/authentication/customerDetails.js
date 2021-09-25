@@ -1,8 +1,15 @@
 import React from 'react'
 
 
+function CustomerDetails({phoneNo,pwd,signUpType}) {
 
-function CustomerDetails() {
+
+	function setLoggedIn(e) {
+		localStorage.setItem('loggedIn','true')
+		localStorage.setItem('userType','customer')
+		history.push('/')
+	}
+
     return (
         <div>
 			<div className="container">
@@ -20,7 +27,7 @@ function CustomerDetails() {
 											<label for="InputPassword1">Email</label>
 											<input type="Email" className="form-control" id="inputEmail" placeholder="Email"/>
 										</div>
-										<button type="submit" className="btn btn-info">Submit</button>
+										<button type="submit" className="btn btn-info" onClick={setLoggedIn}>Submit</button>
 									</form>
 							</div>
 						</div>

@@ -1,7 +1,8 @@
 import React from 'react'
 
 function Login() {
-	function setLoggedIn() {
+
+	function setLoggedIn(e) {
 		localStorage.setItem('loggedIn','true')
 		localStorage.setItem('userType','customer')
 	}
@@ -14,7 +15,7 @@ function Login() {
 						<div className="card">
 							<div className="card-body">
 								<h5 class="card-title">Login</h5>
-								
+
 									<form>
 										<div className="form-group">
 											<label for="inputPhoneNo">Phone Number</label>
@@ -32,8 +33,8 @@ function Login() {
 							</div>
 						</div>
 					</div>
-				</div>	
-			</div>	
+				</div>
+			</div>
         </div>
     )
 }
