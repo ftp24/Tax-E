@@ -5,7 +5,7 @@ const CustomerNavbar = () => {
     
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary my-3 mx-5 rounded">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark my-3 mx-5 rounded">
             <a class="navbar-brand" href="#">NITC TAXI</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
