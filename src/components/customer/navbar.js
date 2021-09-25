@@ -1,16 +1,15 @@
 import {Link, useHistory} from 'react-router-dom';
 
-const CustomerNavbar = () => {
+const CustomerNavbar = ({currentPage}) => {
 
     let history=useHistory()
 
     function SignOut() {
-        localStorage.removeItem('loggedIn');
-        localStorage.removeItem('userType');
-        console.log('Here we go')
-        console.log(localStorage.getItem('loggedIn'))
-        history.push('/');
+        localStorage.removeItem('user');
+        history.push('/login');
     }
+
+    console.log(currentPage);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark my-3 mx-5 rounded">
@@ -21,8 +20,8 @@ const CustomerNavbar = () => {
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="container">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><Link className="nav-link" to="/home-customer">Home</Link></li>
-                        <li class="nav-item"><Link className="nav-link" to="/history">History</Link></li>
+                        <li class={`nav-item ${currentPage === 'customer-home' ? 'active' : ''}`}><Link className="nav-link" to="/customer-home">Home</Link></li>
+                        <li class={`nav-item ${currentPage === 'customer-history' ? 'active' : ''}`}><Link className="nav-link" to="/customer-history">History</Link></li>
                     </ul>
                     <button class="btn btn-outline-info my-2 my-sm-0" type="submit" onClick={SignOut}>Sign Out</button>
                 </div>

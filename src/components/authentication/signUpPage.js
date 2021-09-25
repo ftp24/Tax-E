@@ -1,36 +1,23 @@
 import  React from 'react'
-import {useState,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 
-function SignUp({phoneNo,setPhoneNo,pwd,setPwd,signUpType,setSignUpType}) {
+function SignUpPage() {
 	let history=useHistory()
 
-	useEffect(() => {
-	    console.log(phoneNo,pwd,signUpType)
-
-	}, [pwd])
-
-	function setLoggedIn(e) {
+	function navigateToNextForm(e) {
 		e.preventDefault()
-		// console.log(phoneNo)
-		let inputPno=""
-		let inputPwd=""
-		let inputType=""
 
-		inputPno=(document.getElementById('inputPhoneNo')).value
-		inputPwd=(document.getElementById('InputPassword1')).value
-		inputType=(document.getElementById('inputSignUpType')).value
-		console.log(inputPwd)
-		setPhoneNo(inputPno)
-		setPwd(inputPwd)
-		setSignUpType(inputType)
+		
+		let tempUser = {'phoneno': (document.getElementById('inputPhoneNo')).value,
+		'pwd':(document.getElementById('InputPassword1')).value,
+		'type' : (document.getElementById('inputSignUpType')).value};
+		
+		localStorage.tempUser = JSON.stringify(tempUser);
 
-		if(inputType=='customer')
-		{
-			history.push('/customer-details')
-		}
-		else if(inputType=='driver')
-			history.push('/driver-details')
+		if(tempUser.type==='customer')
+			history.push('/sign-up/customer-details')
+		else if(tempUser.type==='driver')
+			history.push('/sign-up/driver-details')
 		else
 			console.log("invalid inputType")
 	}
@@ -65,7 +52,10 @@ function SignUp({phoneNo,setPhoneNo,pwd,setPwd,signUpType,setSignUpType}) {
 												</div>
 											</div>
 										</div>
-										<button type="submit" className="btn btn-info" onClick={setLoggedIn}>Submit</button>
+										<div className="mb-3">
+										<a href="/login" className="text-info">Already have an account?</a>
+										</div>
+										<button type="submit" className="btn btn-info" onClick={navigateToNextForm}>Next</button>
 
 									</form>
 							</div>
@@ -77,4 +67,4 @@ function SignUp({phoneNo,setPhoneNo,pwd,setPwd,signUpType,setSignUpType}) {
     )
 }
 
-export default SignUp
+export default SignUpPage
