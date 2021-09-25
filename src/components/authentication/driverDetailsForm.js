@@ -13,11 +13,11 @@ function DriverDetailsForm() {
 		history.push('/sign-up')
 
 	let tempUser = JSON.parse(tempUserData);
-	
+
 
 	function signupDriver(e){
 		e.preventDefault()
-		
+
 		let user = {
 		'phoneno': tempUser.phoneno,
 		'pwd':tempUser.pwd,
@@ -32,9 +32,9 @@ function DriverDetailsForm() {
 		console.log(user);
 		addToCache(user);
 
-		history.push('/driver-home');
+		history.push('/driver-available');
 	}
-	
+
     return (
         <div>
 			<div className="container">

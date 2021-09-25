@@ -17,9 +17,9 @@ const DriverNavbar = ({currentPage}) => {
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div className="container">
                 <ul class="navbar-nav">
-                    <li class={`nav-item ${currentPage === 'driver-home' ? 'active' : ''}`}><Link className="nav-link" to="/driver-home">Home</Link></li>
+					<li class={`nav-item ${currentPage === 'driver-available' ? 'active' : ''}`}><Link className="nav-link" to="/driver-available">Available Trips</Link></li>
+					<li class={`nav-item ${currentPage === 'driver-scheduled' ? 'active' : ''}`}><Link className="nav-link" to="/driver-scheduled">Scheduled Trips</Link></li>
 					<li class={`nav-item ${currentPage === 'driver-history' ? 'active' : ''}`}><Link className="nav-link" to="/driver-history">History</Link></li>
-					<li class={`nav-item ${currentPage === 'driver-book' ? 'active' : ''}`}><Link className="nav-link" to="/driver-scheduled">Scheduled Trips</Link></li>
                 </ul>
 				<button class="btn btn-outline-light my-2 my-sm-0" type="submit" onClick={SignOut}>Sign Out</button>
             </div>
