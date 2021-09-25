@@ -25,7 +25,10 @@ function Login() {
 											<label for="InputPassword1">Password</label>
 											<input type="password" className="form-control" id="InputPassword1" placeholder="Password"/>
 										</div>
-										<button type="submit" className="btn btn-primary">Submit</button>
+										<div className="mb-3">
+										<a href="/sign-up" className="text-info">Don't have an account yet?</a>
+										</div>
+											<button type="submit" className="btn btn-info" onClick={setLoggedIn}>Submit</button>
 									</form>
 							</div>
 						</div>
