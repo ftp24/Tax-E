@@ -15,7 +15,7 @@ function CustomerDetailsForm({phoneNo,pwd,signUpType}) {
 
 	function signupCustomer(e){
 		e.preventDefault()
-		
+
 		let user = {
 		'phoneno': tempUser.phoneno,
 		'pwd':tempUser.pwd,
@@ -26,7 +26,7 @@ function CustomerDetailsForm({phoneNo,pwd,signUpType}) {
 		console.log(user);
 		addToCache(user);
 
-		history.push('/customer-home');
+		history.push('/customer-book');
 	}
 
     return (

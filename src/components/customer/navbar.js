@@ -19,10 +19,9 @@ const CustomerNavbar = ({currentPage}) => {
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="container">
                     <ul class="navbar-nav">
-                        <li class={`nav-item ${currentPage === 'customer-home' ? 'active' : ''}`}><Link className="nav-link" to="/customer-home">Home</Link></li>
-                        <li class={`nav-item ${currentPage === 'customer-history' ? 'active' : ''}`}><Link className="nav-link" to="/customer-history">History</Link></li>
 						<li class={`nav-item ${currentPage === 'customer-book' ? 'active' : ''}`}><Link className="nav-link" to="/customer-book">Book Ride</Link></li>
 						<li class={`nav-item ${currentPage === 'customer-scheduled' ? 'active' : ''}`}><Link className="nav-link" to="/customer-scheduled">Scheduled Trips</Link></li>
+						<li class={`nav-item ${currentPage === 'customer-history' ? 'active' : ''}`}><Link className="nav-link" to="/customer-history">History</Link></li>
 
 					</ul>
                     <button class="btn btn-outline-info my-2 my-sm-0" type="submit" onClick={SignOut}>Sign Out</button>
