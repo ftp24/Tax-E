@@ -29,18 +29,30 @@ function LoginPage() {
 		let user = {
 			'phoneno': (document.getElementById('phoneno')).value,
 			'pwd': (document.getElementById('pwd')).value,
+			'type': (document.getElementById('inputVehicleType')).value,
 		};
 		setIsLoading(true)
-
+		console.log(user)
 		let dbData= await loginUser_db(user)
-		addToCache(user)
+		if(user.type=='rider')
+		{
+			user.type='customer'
+		}
+		dbData['type']=user.type
+		console.log("check",user.type)
+		addToCache(dbData)
 		console.log(dbData)
 		if('message' in dbData)
 		{
 			setIsLoading(false)
 			alert(dbData.message)
 		}
-		else
+		else if(user.type=='driver')
+		{
+			console.log("success")
+			history.push('/driver-available');
+		}
+		else if(user.type=='customer')
 		{
 			console.log("success")
 			history.push('/customer-book');
@@ -66,8 +78,16 @@ function LoginPage() {
 											</div>
 											<div className="form-group">
 												<label for="pwd">Password</label>
-												<input type="password" className="form-control" id="pwd" placeholder="Password"/>
+												<input type="password" className="form-control mb-2" id="pwd" placeholder="Password"/>
+												<div className="col-12">
+													<label for="inputUserType">UserType</label>
+													<select className="form-select mt-3 ml-4" id="inputVehicleType" name="inputVehicleType">
+														<option value="rider">Customer</option>
+														<option value="driver">Driver</option>
+													</select>
+												</div>
 											</div>
+
 											<div className="mb-3">
 											<a href="/sign-up" className="text-info">Don't have an account yet?</a>
 											</div>
