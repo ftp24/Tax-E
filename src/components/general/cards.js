@@ -1,4 +1,4 @@
-const Cards = ({time,date,from_loc,to_loc}) => {
+const Cards = ({trip}) => {
 
     //person1,person2,from_loc,to_loc,
 
@@ -11,19 +11,19 @@ const Cards = ({time,date,from_loc,to_loc}) => {
                             <div className="row">
                                 <div className="col-sm">
                                     <span className="mx-2">
-                                        {date}
+                                        {trip.time.split(" ")[1]}
                                     </span>
                                     <span className="mx-2">
-                                        {time}
+                                        {trip.time.split(" ")[0]}
                                     </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="card-body">
-                        <h3 className="card-title"><span class="badge badge-light">{`${from_loc} -> ${to_loc}`}</span></h3>
-                        
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                        <h3 className="card-title"><span class="badge badge-light">{`${trip.to_add} -> ${trip.from_add}`}</span></h3>
+
+
                     </div>
                     </div>
                 </div>
