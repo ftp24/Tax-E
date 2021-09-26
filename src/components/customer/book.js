@@ -4,7 +4,7 @@ import moment from 'moment'
 import {useState,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 function Book() {
-
+	
 	let history=useHistory()
 	let currentDate=''
 	let currentTime=''
@@ -83,36 +83,62 @@ function Book() {
 		<div>
 			<CustomerNavbar currentPage='customer-book'/>
 			<div className="row align-items-center justify-content-md-center">
-				<div className="col-8 mt-5">
+				<div className="col-7 mt-5">
 					<div className="card">
 						<div className="card-body">
 							<h5 class="card-title">Book Your Trip</h5>
 							<form>
 								<div className="form-group row">
 									<div className="col-12 col-md-6">
-										<label for="inputFrom">From</label>
-										<input type="text" className="form-control mb-1" id="inputFrom" placeholder="Enter Location"/>
-										<label for="inputDate">Date</label>
-										<input type="date" min={minDate} className="form-control mb-2" id="inputDate" placeholder="Enter Date"/>
+										<div class="row">
+											<div class="col-12">
+											<label for="inputFrom">From</label>
+											</div>
+											<select className="form-select  ml-2" id="inputFrom" name="inputFrom">
+												<option value="NITC">NITC</option>
+												<option value="Calicut Airport">Calicut Airport</option>
+												<option value="Calicut Beach">Calicut Beach</option>
+												<option value="Calicut Railway Station">Calicut Railway Station</option>
+												<option value="Kozhikode  New Bus Stand">Kozhikode  New Bus Stand</option>
+											</select>
+										</div>
+										<div class="row mt-3 ml-0 mr-4">
+											<label for="inputDate">Date</label>
+											<input type="date" min={minDate} className="form-control mb-4" id="inputDate" placeholder="Enter Date"/>
 
-										<label for="inputVehicleType">Vehicle Type</label>
-										<select className="form-select  ml-2" id="inputVehicleType" name="inputVehicleType">
-											<option value="auto">Auto</option>
-											<option value="sedan">Sedan</option>
-											<option value="suv">SUV</option>
-										</select>
+											<label for="inputVehicleType">Vehicle Type</label>
+											<select className="form-select  ml-2" id="inputVehicleType" name="inputVehicleType">
+												<option value="auto">Auto</option>
+												<option value="sedan">Sedan</option>
+												<option value="suv">SUV</option>
+											</select>
+										</div>
 									</div>
 
 									<div className="col-12 col-md-6">
-										<label for="inputTo">To</label>
-										<input type="text" className="form-control mb-2" id="inputTo" placeholder="Enter Location"/>
-										<label for="inputTime">Time</label>
-										<input type="time" min={minTime} className="form-control mb-1" id="inputTime" placeholder="Enter Time"/>
-										<label for="inputShared">Solo or Shared</label>
-										<select className="form-select  ml-2" id="inputShared" name="inputShared">
-											<option value="F">Solo</option>
-											<option value="T">Shared</option>
-										</select>
+										<div class="row">
+											<div class="col-12">
+											<label for="inputTo">To</label>
+											</div>
+											<select className="form-select mb-3 ml-2" id="inputTo" name="inputTo">
+												<option value="NITC">NITC</option>
+												<option value="Calicut Airport">Calicut Airport</option>
+												<option value="Calicut Beach">Calicut Beach</option>
+												<option value="Calicut Railway Station">Calicut Railway Station</option>
+												<option value="Kozhikode  New Bus Stand">Kozhikode  New Bus Stand</option>
+											</select>
+										</div>
+										<div className="row mr-4">
+											<label for="inputTime">Time</label>
+											<input type="time" min={minTime} className="form-control mb-1" id="inputTime" placeholder="Enter Time"/>
+											<div className="mt-4">
+											<label for="inputShared">Solo or Shared</label>
+											<select className="form-select ml-2" id="inputShared" name="inputShared">
+												<option value="F">Solo</option>
+												<option value="T">Shared</option>
+											</select>
+											</div>
+										</div>
 									</div>
 									<div className="col-4">
 										<button type="submit" className="btn btn-info mt-2" onClick={bookRide}>Book</button>

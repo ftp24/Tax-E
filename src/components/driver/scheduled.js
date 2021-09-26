@@ -1,8 +1,12 @@
 import Cards from "../general/cards";
-import {useEffect} from 'react'
+import {useState,useEffect} from 'react'
 import DriverNavbar from "./navbar";
+import DriverScheduledCards from "../general/driver-scheduled-card";
+
 const DriverScheduled = () => {
 
+	const[dbData,setDbData]=useState([])
+	let temp=''
 	async function scheduledDriver_db(user)
 	{
 		console.log('user', user);
@@ -14,8 +18,12 @@ const DriverScheduled = () => {
 			},
 			body: JSON.stringify(request) // The data
 		})
-		const data = await response.json();
+		let data = await response.json();
 		console.log("data-response",data);
+		if('message' in data)
+		{
+			data=[]
+		}
 		return data
 	}
 
@@ -28,11 +36,11 @@ const DriverScheduled = () => {
 		async function scheduledDriver()
 		{
 			console.log("hello")
-			let dbData=await scheduledDriver_db(user);
+			setDbData(await scheduledDriver_db(user));
 			console.log(dbData)
 		}
 		scheduledDriver()
-	}, )
+	},[temp] )
 
 	async function cancelRide()
 	{
@@ -45,7 +53,9 @@ const DriverScheduled = () => {
     return (
         <div>
             <DriverNavbar currentPage='driver-scheduled'/>
-            <Cards time={"11:00pm"} date={"11/09/2021"} to_loc="Trivandrum" from_loc="Calicut"/>
+			{dbData.map((data)=>(
+				<DriverScheduledCards trip={data}/>
+			))}
         </div>
     );
 }
