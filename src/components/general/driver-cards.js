@@ -1,7 +1,8 @@
+import {useHistory} from 'react-router-dom'
+
 const DriverCards = ({trip}) => {
-
     //person1,person2,from_loc,to_loc,
-
+		let history=useHistory()
 		async function AcceptDriver_db(user)
 		{
 			console.log('user', user);
@@ -34,6 +35,7 @@ const DriverCards = ({trip}) => {
 			console.log("hello")
 			let dbData=await AcceptDriver_db(user);
 			console.log(dbData)
+			history.push('/driver-scheduled')
 		}
         return (
             <div className="row justify-content-md-center">

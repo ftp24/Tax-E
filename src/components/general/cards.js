@@ -23,7 +23,7 @@ const Cards = ({trip}) => {
                     <div className="card-body">
                         <h3 className="card-title"><span class="badge badge-light">{`${trip.to_add} -> ${trip.from_add}`}</span></h3>
 						<h3 className="card-title"><span class="badge badge-light">{`Vehicle Type : ${trip.vehicletype}`}</span></h3>
-						<h3 className="card-title"><span class="badge badge-light">{`Status : ${trip.tripstatus}`}</span></h3>
+						<h3 className="card-title"><span class="badge badge-light">{`Status : Completed`}</span></h3>
 						<h3 className="card-title"><span class="badge badge-light">{`Cost : ${trip.amount} Rs`}</span></h3>
 						{trip.bookingstatus!=="Pending" && (
 						   <h3 className="card-title"><span class="badge badge-light">{`Driver Phone no : ${trip.Dphoneno}`}</span></h3>
