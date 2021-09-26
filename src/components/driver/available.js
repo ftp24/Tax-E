@@ -1,4 +1,4 @@
-import Cards from "../general/cards";
+import DriverCards from "../general/driver-cards";
 import DriverNavbar from "./navbar";
 import {useEffect,useState} from 'react'
 
@@ -51,8 +51,8 @@ const DriverAvailable = () => {
         <div>
             <DriverNavbar currentPage='driver-available'/>
 			{
-				dbData.map((data)=>(
-   				<Cards trip={data}/>
+				dbData.filter((data)=>('bookingstatus' in data)&&data.bookingstatus==="Pending").map((data)=>(
+   				<DriverCards trip={data}/>
    			))}
         </div>
     );

@@ -1,4 +1,4 @@
-import Cards from "../general/cards";
+import CustomerScheduledCards from "../general/customer-scheduled-card";
 import CustomerNavbar from "./navbar";
 import {useEffect,useState} from 'react'
 const CustomerScheduled = () => {
@@ -17,9 +17,13 @@ const CustomerScheduled = () => {
 			})
 			const data = await response.json();
 			console.log("data-response",data);
+			if('message' in data)
+			{
+				data=[]
+			}
 			return data
 		}
-
+		let userTemp= JSON.parse((localStorage.getItem('user')))
 	  	useEffect(() => {
 			let phoneno = JSON.parse((localStorage.getItem('user'))).phoneno;
 			let user = {
@@ -39,10 +43,9 @@ const CustomerScheduled = () => {
         <div>
             <CustomerNavbar currentPage='customer-scheduled'/>
 			{dbData.map((data)=>(
-
-				<Cards trip={data}/>
+				<CustomerScheduledCards trip={data}/>
 			))}
-        </div>
+		</div>
     );
 }
 
