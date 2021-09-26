@@ -1,7 +1,10 @@
 import Cards from "../general/cards";
 import CustomerNavbar from "./navbar";
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 const CustomerHistory = () => {
+
+	const[dbData,setDbData]=useState([])
+	let temp=''
 	async function historyCustomer_db(user)
 	{
 		console.log('user', user);
@@ -15,6 +18,10 @@ const CustomerHistory = () => {
 		})
 		const data = await response.json();
 		console.log("data-response",data);
+		if('message' in data)
+		{
+			data=[]
+		}
 		return data
 	}
 
@@ -26,16 +33,18 @@ const CustomerHistory = () => {
 		async function historyCustomer()
 		{
 			console.log("hello")
-			let dbData=await historyCustomer_db(user);
+			setDbData(await historyCustomer_db(user));
 			console.log(dbData)
 		}
 		historyCustomer()
-	}, )
+	}, [temp])
 
     return (
         <div>
             <CustomerNavbar currentPage='customer-history'/>
-            <Cards time={"11:00pm"} date={"11/09/2021"} to_loc="Trivandrum" from_loc="Calicut"/>
+				{dbData.map((data)=>(
+	 			   <Cards trip={data}/>
+	 		   ))}
         </div>
     );
 }
