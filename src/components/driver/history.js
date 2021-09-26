@@ -1,8 +1,13 @@
 import Cards from "../general/cards";
 import DriverNavbar from "./navbar";
-import {useEffect} from 'react'
+import {useState, useEffect} from 'react'
 
 const DriverHistory = () => {
+
+		const[dbData,setDbData]=useState([])
+
+		let temp=''
+
 	async function historyDriver_db(user)
 	{
 		console.log('user', user);
@@ -16,6 +21,10 @@ const DriverHistory = () => {
 		})
 		const data = await response.json();
 		console.log("data-response",data);
+		if('message' in data)
+		{
+			data=[]
+		}
 		return data
 	}
 
@@ -27,16 +36,18 @@ const DriverHistory = () => {
 		async function historyDriver()
 		{
 			console.log("hello")
-			let dbData=await historyDriver_db(user);
+			setDbData(await historyDriver_db(user));
 			console.log(dbData)
 		}
 		historyDriver()
-	}, )
+	}, [temp])
 
     return (
         <div>
             <DriverNavbar currentPage='driver-history'/>
-            <Cards time={"11:00pm"} date={"11/09/2021"} to_loc="Trivandrum" from_loc="Calicut"/>
+	 			   {dbData.map((data)=>(
+	 				  <Cards trip={data}/>
+	 			  ))}
         </div>
     );
 }
