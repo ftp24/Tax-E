@@ -16,13 +16,13 @@ Additional Features
 3. Ratings and Complains: At the end of every ride, customers can rate their ride, the can also make a complain if there are any
 4. In-app messaging: Customer and driver can communicate with each other via the app
 
-Commands to run front-end
-First navigate to Tax-E directory
+Commands to run front-end:      
+First navigate to the Tax-E directory
 1. npm -i 
 2. npm start
 
-Commands To run back-end
-First navigate to Tax-E-Backend directory
+Commands To run back-end:       
+First navigate to the Tax-E-Backend directory
 1. pip install -r requirements.txt
 2. export FLASK_APP=taxibackend
 3. export FLASK_ENV=development
